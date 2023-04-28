@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { useContext } from "react";
 import AuthContext from "../context/AuthContext";
+import { userRequest } from "../../UserRequest";
 
 const InputToDo = ({ setShowToDoForm, setTodos }) => {
   const [input, setInput] = useState("");
@@ -21,7 +22,7 @@ const InputToDo = ({ setShowToDoForm, setTodos }) => {
   const fetchTodosData = async () => {
     // fetching todos API call
     try {
-      const res = await axios.get("/getToDos", {
+      const res = await userRequest.get("/getToDos", {
         headers: { Authorization: `Bearer ${auth.token}` },
       });
       setTodos(res.data.userWithTodos.todos.reverse());
@@ -38,7 +39,7 @@ const InputToDo = ({ setShowToDoForm, setTodos }) => {
 
     // create ToDo API call
 
-    await axios
+    await userRequest
       .post("/createToDo", data, {
         headers: { Authorization: `Bearer ${auth.token}` },
       })

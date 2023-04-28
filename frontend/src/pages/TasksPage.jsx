@@ -9,8 +9,6 @@ const TasksPage = ({ todos, fetchTodosData }) => {
   const todo = todos.find((todo) => {
     return todo._id === todoId;
   });
-  // console.log(todos);
-  // console.log(todos, "Prakash");
 
   const capitalize = (text) => {
     const newText = text.charAt(0).toUpperCase() + text.slice(1);

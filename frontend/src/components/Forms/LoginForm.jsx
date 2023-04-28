@@ -4,6 +4,7 @@ import { useState } from "react";
 import AuthContext from "../context/AuthContext";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { userRequest } from "../../UserRequest";
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
@@ -29,7 +30,7 @@ const LoginForm = () => {
       password: password,
     };
 
-    await axios
+    await userRequest
       .post("/user/login", data)
       .then((res) => {
         console.log(res, "login response");

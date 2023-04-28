@@ -18,6 +18,7 @@ import AuthContext from "./components/context/AuthContext";
 import LoginForm from "./components/Forms/LoginForm";
 import { useAuth } from "./components/hooks/authHook";
 import SignupForm from "./components/Forms/SignupForm";
+import { userRequest } from "./UserRequest";
 
 function App() {
   const [todos, setTodos] = useState([]);
@@ -29,7 +30,7 @@ function App() {
     // fetching todos API call
 
     try {
-      const res = await axios.get("http://localhost:3001/getToDos", {
+      const res = await userRequest.get("/getToDos", {
         headers: { Authorization: `Bearer ${token}` },
       });
       console.log(res, "main response");

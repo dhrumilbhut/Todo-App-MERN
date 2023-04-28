@@ -6,6 +6,7 @@ import { faTrash, faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import EditTaskModal from "../modals/EditTaskModal";
 import AuthContext from "../context/AuthContext";
+import { userRequest } from "../../UserRequest";
 
 const Card = ({ task, todoId, setTodoState, todoState, fetchTodosData }) => {
   const [isedit, setIsEdit] = useState(false);
@@ -18,7 +19,7 @@ const Card = ({ task, todoId, setTodoState, todoState, fetchTodosData }) => {
   const handleDelete = async () => {
     const text = "Do You Really Want To Delete?";
     if (window.confirm(text)) {
-      await axios.delete(`/${todoId}/deleteTask/${task._id}`, {
+      await userRequest.delete(`/${todoId}/deleteTask/${task._id}`, {
         headers: { Authorization: `Bearer ${auth.token}` },
       });
       const newTodoState = todoState.tasks.filter((item) => {
@@ -35,7 +36,7 @@ const Card = ({ task, todoId, setTodoState, todoState, fetchTodosData }) => {
       description: newTaskDescription,
     };
 
-    await axios.put(`/${todoId}/${task._id}`, data, {
+    await userRequest.put(`/${todoId}/${task._id}`, data, {
       headers: { Authorization: `Bearer ${auth.token}` },
     });
 

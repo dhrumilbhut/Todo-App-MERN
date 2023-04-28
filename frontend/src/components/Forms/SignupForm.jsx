@@ -2,6 +2,7 @@ import axios from "axios";
 import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { userRequest } from "../../UserRequest";
 
 function SignupForm() {
   const navigate = useNavigate();
@@ -30,8 +31,7 @@ function SignupForm() {
       email: email.trim(),
       password: password,
     };
-    console.log(data);
-    axios
+    userRequest
       .post("/user/signup", data)
       .then((res) => {
         alert("User Created Successfully");

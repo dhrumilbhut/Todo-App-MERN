@@ -10,6 +10,7 @@ import { useEffect } from "react";
 import axios from "axios";
 import { useContext } from "react";
 import AuthContext from "../context/AuthContext";
+import { userRequest } from "../../UserRequest";
 
 const ToDoList = ({ todos, setTodos, fetchTodosData }) => {
   const [showToDoForm, setShowToDoForm] = useState(false);
@@ -31,8 +32,8 @@ const ToDoList = ({ todos, setTodos, fetchTodosData }) => {
 
   useEffect(() => {
     const fetchData = async (sort) => {
-      const res = await axios.get(
-        `http://localhost:3001/getToDos/sort/${sort}`,
+      const res = await userRequest.get(
+        `/getToDos/sort/${sort}`,
         {
           headers: { Authorization: `Bearer ${auth.token}` },
         }

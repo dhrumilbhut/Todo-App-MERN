@@ -9,6 +9,7 @@ import { faTrash, faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import "../../index.css";
 import { useContext } from "react";
 import AuthContext from "../context/AuthContext";
+import { userRequest } from "../../UserRequest";
 
 const ToDoListItem = ({
   title,
@@ -29,7 +30,7 @@ const ToDoListItem = ({
 
     // delete todo api call
     if (window.confirm(text)) {
-      await axios.delete(`/deleteTodo/${_id}`, {
+      await userRequest.delete(`/deleteTodo/${_id}`, {
         headers: { Authorization: `Bearer ${auth.token}` },
       });
       const newTodos = todos.filter((todo) => {
@@ -58,7 +59,7 @@ const ToDoListItem = ({
 
     // update to do API call
 
-    await axios.put(`/updateToDo/${_id}`, data, {
+    await userRequest.put(`/updateToDo/${_id}`, data, {
       headers: { Authorization: `Bearer ${auth.token}` },
     });
     setEditMode(false);
